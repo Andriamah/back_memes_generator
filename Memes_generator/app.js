@@ -2,15 +2,14 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+const User_controller = require('./routes/User_controller')
+
 
 
 // var VerifyToken = require('./utile/VerifyToken');
 // var VerifyTokenProf = require('./utile/VerifyTokenProf');
 
 // connectToDatabase();
-
-
-
 
 
 app.use(bodyParser.json());
@@ -31,6 +30,10 @@ app.get('/', (req, res) => {
 /**
  * ================================================================
  */
+
+const user_controller = new User_controller();
+app.post('/user' , user_controller.create_user );
+app.post('/login',user_controller.login);
 
 const port = process.env.PORT || 3000;
 app.set('port', port);
