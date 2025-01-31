@@ -28,12 +28,22 @@ class Memes_controller {
         }
     }
 
-    get_all_memes = async(req , res) => {
+    get_all_memes = async (req, res) => {
         try {
             const memes = await this.Memes_service.get_all_memes_order_by_date();
             res.status(200).send(memes);
         } catch (error) {
             res.status(500).send(error);
+        }
+    }
+
+    get_all_memes_by_user = async (req, res) => {
+        try {
+            const memes = await this.Memes_service.get_memes_by_creator(req.params.id);
+            res.status(200).send(memes);
+        } catch (error) {
+            res.status(500).send(error);
+
         }
     }
 

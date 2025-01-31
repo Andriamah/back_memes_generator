@@ -1,6 +1,6 @@
 const Memes = require('../model/Memes');
 const User = require('../model/User')
-const sequelize = require('../config/db'); 
+const sequelize = require('../config/db');
 
 class Memes_service {
 
@@ -25,6 +25,16 @@ class Memes_service {
         }
     }
 
+    async get_memes_by_creator(id) {
+        try {
+            const memes = await Memes.findAll({ where: { creator_id: id } });
+            return memes;
+        } catch (err) {
+            console.log(err)
+            throw err;
+        }
+    }
+
     async get_all_memes_order_by_date() {
         try {
             const memes = await Memes.findAll({
@@ -42,6 +52,26 @@ class Memes_service {
                 ],
                 order: [['createdAt', 'DESC']]
             });
+            return memes;
+        } catch (err) {
+            console.log(err)
+            throw err;
+        }
+    }
+
+    async update_memes_by_id(id) {
+        try {
+            const memes = await Memes.update({ where: { id: id } });
+            return memes;
+        } catch (err) {
+            console.log(err)
+            throw err;
+        }
+    }
+    
+    async delete_memes_by_id(id) {
+        try {
+            const memes = await Memes.delete({ where: { id: id } });
             return memes;
         } catch (err) {
             console.log(err)

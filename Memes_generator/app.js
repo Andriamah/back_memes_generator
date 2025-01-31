@@ -40,8 +40,10 @@ app.post('/login', user_controller.login);
 
 const memes_controller = new Memes_controller();
 app.post('/meme', Tool.verifyToken, memes_controller.create_memes);
+
 app.get('/meme/:id', memes_controller.get_memes_by_id);
 app.get('/memes', memes_controller.get_all_memes);
+app.get('/meme/creator/:id',memes_controller.get_all_memes_by_user);
 
 /**
  * ================================================================
