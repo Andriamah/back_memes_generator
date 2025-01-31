@@ -1,9 +1,14 @@
-const sequelize = require('./config/db');
-
-const User = require('./model/user.js'); // Import du modèle
+const { sequelize, User, Memes, Favorite, Comment } = require('../model/index'); 
 
 
-// Synchronisation avec la base de données sans supprimer les tables existantes
-sequelize.sync({ alter: true }) 
-  .then(() => console.log("Base de données synchronisée avec succès"))
-  .catch(err => console.error(" Erreur lors de la synchronisation :", err));
+const syncDB = async () => {
+  try {
+    await sequelize.sync({ alter: true });
+    console.log("✅ Base de données synchronisée avec succès");
+  } catch (err) {
+    console.error("❌ Erreur lors de la synchronisation :", err);
+    throw err;
+  }
+};
+
+module.exports = syncDB; 
