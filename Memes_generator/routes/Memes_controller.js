@@ -1,7 +1,6 @@
 const Memes_service = require('../service/Meme_service');
 const Image_service = require('../service/Image_service')
 const Tool = require('../utile/Tool');
-const upload = require('../config/multer');
 const mongoose = require('mongoose');
 
 
