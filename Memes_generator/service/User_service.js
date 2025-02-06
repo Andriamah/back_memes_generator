@@ -25,8 +25,8 @@ class User_service {
         }
     }
 
-    async get_user_by_id(id) {
-        try {            
+    async find_user_by_id(id) {
+        try {
             const user = await User.findAll({ where: { id: id } });
             console.log("user by ID: ");
             console.log(user);
@@ -36,5 +36,27 @@ class User_service {
             throw err;
         }
     }
+
+    async update_user(data) {
+        try {
+            // Effectuer la mise à jour
+            await User.update(
+                data,
+                { where: { id: data.id } }
+            );
+
+            // Récupérer l'utilisateur mis à jour
+            const updatedUser = await User.findOne({ where: { id: data.id } });
+
+            console.log('Utilisateur mis à jour:', updatedUser);
+
+            return updatedUser;
+        } catch (err) {
+            console.error(err);
+            throw err;
+        }
+    }
+
+
 }
 module.exports = User_service;

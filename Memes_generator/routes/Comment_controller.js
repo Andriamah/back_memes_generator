@@ -20,10 +20,11 @@ class Comment_controller {
 
     get_comment_by_memes = async (req, res) => {
         try {
-            const comments = await Comment_service.get_comment_by_memes(req.params.id);
+            const comments = await this.Comment_service.find_comment_by_memes(req.params.id_meme);
             res.status(200).send(comments);
 
         } catch (error) {
+            console.log(error)
             res.status(500).send(error);
 
         }

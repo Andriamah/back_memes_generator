@@ -31,11 +31,33 @@ class Favorite_service {
         }
     }
 
-    async delete_favorite_by_user(id) {
+    async find_favorite_user_memes(id) {
+
+    }
+
+    async delete_favorite_by_user(memes_id,creator_id) {
         try {
-            await Favorite.delete({
-                where: { id: id }
+            console.log('TRY')
+            await Favorite.destroy({
+                where: { memes_id: memes_id ,
+                    creator_id : creator_id
+                }
             })
+        } catch (error) {
+            console.log('CATCH '+error)
+            throw error;
+        }
+    }
+
+    async if_user_favorite(user_id, memes_id) {
+        try {
+            const favorite = await Favorite.findAll({
+                where: {
+                    memes_id: memes_id,
+                    creator_id: user_id
+                }
+            });
+            return favorite;
         } catch (error) {
             throw error;
         }

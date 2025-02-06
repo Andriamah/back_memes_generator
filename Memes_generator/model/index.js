@@ -9,7 +9,7 @@ User.hasMany(Favorite, { foreignKey: 'creator_id' });
 Favorite.belongsTo(User, { foreignKey: 'creator_id' });
 
 Memes.hasMany(Favorite , {foreignKey:'memes_id'});
-Favorite.belongsTo(Memes,{foreignKey:'memes_id'})
+Favorite.belongsTo(Memes,{foreignKey:'memes_id'});
 
 // Relation entre user et ses memes
 User.hasMany(Memes, { foreignKey: 'creator_id' });
