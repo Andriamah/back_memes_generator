@@ -22,3 +22,4 @@ Ensuite, lancez ces commandes suivantes :
 Ce projet n'est pas encore déployé en ligne, il faut donc l'exécuter localement pour l'instant.
 
 *Bon visionnage !*
+*By Elodie ANDRIAMAHANINTSOA*
