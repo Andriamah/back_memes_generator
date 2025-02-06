@@ -6,8 +6,8 @@ const User = sequelize.define('User', {
     username: { type: DataTypes.STRING, allowNull: false , unique: true },
     password: { type: DataTypes.TEXT, allowNull: false }
 }, {
-    tableName: 'user', // Nom de la table
-    timestamps: false // Désactive `createdAt` et `updatedAt`
+    tableName: 'user', 
+    timestamps: false 
 });
 
 module.exports = User;

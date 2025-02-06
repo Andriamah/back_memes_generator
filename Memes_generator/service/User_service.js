@@ -39,13 +39,11 @@ class User_service {
 
     async update_user(data) {
         try {
-            // Effectuer la mise à jour
             await User.update(
                 data,
                 { where: { id: data.id } }
             );
 
-            // Récupérer l'utilisateur mis à jour
             const updatedUser = await User.findOne({ where: { id: data.id } });
 
             console.log('Utilisateur mis à jour:', updatedUser);

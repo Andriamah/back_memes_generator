@@ -18,8 +18,8 @@ class Comment_service {
                 where: { memes_id: id },
                 include: [
                     {
-                        model: User, // Associe le modèle User
-                        attributes: ['username'] // Récupère uniquement le username
+                        model: User, 
+                        attributes: ['username'] 
                     }
                 ]
             });

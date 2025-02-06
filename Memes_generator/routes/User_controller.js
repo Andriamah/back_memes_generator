@@ -17,15 +17,13 @@ class User_controller {
             req.body.password = bcrypt.hashSync(req.body.password, 8);
 
             const new_user = await this.User_service.create_user(req.body);
-            console.log('ici user', new_user.toJSON());  // Utilisation de .toJSON() pour afficher l'objet complet
+            console.log('ici user', new_user.toJSON());  
 
-            // create a token
             const user_id = new_user.id || new_user.get('id');
             console.log('voici l id alors => ' + user_id)
 
-            // create a token
             const token = jwt.sign({ id: user_id }, config.secret, {
-                expiresIn: 86400 // expires in 24 hours
+                expiresIn: 86400 
             });
 
             res.status(201).send({ auth: true, token: token, user: new_user });
@@ -72,19 +70,15 @@ class User_controller {
                 password: bcrypt.hashSync(req.body.new_password, 8)
             };
     
-            console.log('VOICI L USER MODIFIER ' + JSON.stringify(user_updated));
+            console.log('VOICI L USER MODIFIE ' + JSON.stringify(user_updated));
     
-            // Mise à jour de l'utilisateur
             const new_user = await this.User_service.update_user(user_updated);
     
-            // Assurez-vous de retourner l'utilisateur mis à jour correctement
             console.log('ici user', JSON.stringify(new_user));
     
-            // Récupérer l'ID de l'utilisateur mis à jour
-            const user_id = new_user.id;  // Pas besoin d'utiliser `.get('id')` car `new_user` est maintenant un objet direct
+            const user_id = new_user.id; 
             console.log('voici l id alors => ' + user_id);
     
-            // Créer un nouveau token JWT
             const token = jwt.sign({ id: user_id }, config.secret, {
                 expiresIn: 86400
             });
